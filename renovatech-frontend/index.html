@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <!-- Metadados Essenciais, SEO e Performance -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renovatech - Soluções Tecnológicas Inovadoras</title>
+    <meta name="description" content="A Renovatech transforma negócios com tecnologia de ponta, design moderno e estratégias digitais que impulsionam o seu sucesso em Angola e no mundo.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Google Fonts: Poppins (com preconnect para performance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet Principal -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/logout-modal.css">
+</head>
+<body data-theme="dark">
+
+   <!-- =========================================================================
+     CABEÇALHO E NAVEGAÇÃO (VERSÃO FINAL COM BOTÃO DE SAIR)
+     ========================================================================== -->
+<header class="main-header" id="main-header">
+    <div class="container">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="images/navbar.png" alt="Renovatech" class="logo">
+            </a>
+
+            <!-- Menu de Navegação (Desktop) -->
+            <nav class="nav-menu-desktop">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="services.html" class="nav-link">Serviços</a>
+                <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+
+            <!-- Botões de Ação Dinâmicos (Login/Sair) para Desktop -->
+            <div class="nav-actions">
+                <!-- Botão de Login (visível por padrão) -->
+                <a href="login.html" id="login-button" class="btn btn-primary">Login</a>
+                
+                <!-- Botão de Sair (inicialmente oculto, com as mesmas classes para estilo) -->
+                <button id="logout-button" class="btn btn-primary" style="display: none;">Sair</button>
+            </div>
+
+            <!-- Botão Hambúrguer (Mobile) -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-drawer">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Menu Lateral (Drawer para Mobile) com Lógica de Login/Sair -->
+<aside class="nav-drawer" id="nav-drawer" aria-hidden="true" tabindex="-1">
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-drawer-link">Home</a></li>
+            <li><a href="services.html" class="nav-drawer-link">Serviços</a></li>
+            <li><a href="sobre.html" class="nav-drawer-link">Sobre Nós</a></li>
+            <li><a href="contato.html" class="nav-drawer-link">Contato</a></li>
+
+            <!-- Links de Ação Dinâmicos para Mobile -->
+            <li class="nav-drawer-divider"></li>
+            
+            <!-- Link de Login (visível por padrão) -->
+            <li><a href="login.html" id="mobile-login-link" class="nav-drawer-link">Login</a></li>
+            
+            <!-- Link de Sair (inicialmente oculto) -->
+            <li><a href="#" id="mobile-logout-link" class="nav-drawer-link" style="display: none;">Sair</a></li>
+        </ul>
+    </nav>
+</aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <!-- =========================================================================
+     CONTEÚDO PRINCIPAL
+     ========================================================================== -->
+    <main>
+
+        <!-- =========================================================================
+ SEÇÃO HERO COM CARROSSEL DE ANIMAÇÃO CSS
+ ========================================================================== -->
+<section class="page-hero" id="home">
+    <div class="hero-media">
+        <div class="slides">
+            <img src="images/hero-escuro.jpg" alt="Fundo tecnológico 1">
+            <img src="images/hero-branco.jpg" alt="Fundo tecnológico 2">
+            <img src="images/slide3.jpg" alt="Terceira imagem do carrossel">
+        </div>
+    </div>
+
+    <!-- Conteúdo de Texto Sobreposto -->
+    <div class="container hero-content on-scroll-reveal">
+        <h1 class="hero-title">Tecnologia que Impulsiona. Estratégia que Transforma.</h1>
+        <p class="hero-subtitle">Criamos soluções digitais robustas, inovadoras e à medida para levar o seu negócio ao próximo nível em Angola.</p>
+        <div class="hero-actions">
+            <a href="#contato" class="btn btn-primary">Fale Conosco</a>
+            <a href="#planos" class="btn btn-secondary">Ver Planos</a>
+        </div>
+    </div>
+</section>
+
+        <!-- B) Seção "O Que Fazemos" -->
+        <section class="section-padding" id="servicos">
+            <div class="container on-scroll-reveal">
+                <div class="grid-what-we-do">
+                    <div class="what-we-do-text">
+                        <h2 class="section-title text-left">O Que Fazemos</h2>
+                        <p>Na Renovatech, especializamo-nos em transformar ideias em realidade digital. A nossa equipa multidisciplinar desenvolve websites de alta performance, aplicações web personalizadas e lojas e-commerce que não só impressionam visualmente, mas também são otimizadas para conversão e crescimento. Combinamos design de ponta com engenharia de software robusta para entregar produtos que geram resultados tangíveis.</p>
+                    </div>
+
+                    <div class="what-we-do-image">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="#0352BB" d="M48.4,-67.2C63,-57.1,75.4,-42.9,79.5,-26.7C83.7,-10.5,79.6,7.7,72.2,23.8C64.9,39.9,54.4,53.9,41.2,63.1C28,72.3,12,76.6,-4.3,78.2C-20.6,79.7,-41.2,78.5,-56.3,69.5C-71.4,60.5,-81,43.7,-84.6,26.1C-88.2,8.6,-85.8,-9.7,-77.9,-25.1C-70,-40.5,-56.6,-53,-42.2,-62.7C-27.8,-72.4,-12.3,-79.3,2.4,-81.1C17.1,-82.9,33.9,-77.3,48.4,-67.2Z" transform="translate(100 100)" />
+                        </svg>
+
+                        <!-- Imagem por cima do azul -->
+                        <img src="images/circulo.png" alt="Imagem sobre o azul" class="overlay-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- C) Seção Parceiros (Scroll Infinito) -->
+        <section class="partners-section on-scroll-reveal">
+            <div class="partners-scroller">
+                <div class="partners-track">
+                    <!-- Logos como imagens -->
+                    <img src="images/parceiro1.png" alt="Parceiro 1">
+                    <img src="images/parceiro2.png" alt="Parceiro 2">
+                    <img src="images/parceiro3.png" alt="Parceiro 3">
+                    <img src="images/parceiro4.png" alt="Parceiro 4">
+                    <img src="images/parceiro5.png" alt="Parceiro 5">
+                    <img src="images/parceiro6.png" alt="Parceiro 6">
+                    <img src="images/parceiro7.png" alt="Parceiro 7">
+                    <img src="images/parceiro8.png" alt="Parceiro 8">
+                    <img src="images/parceiro9.png" alt="Parceiro 9">
+                    <img src="images/parceiro10.png" alt="Parceiro 10">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- D) Seção Vantagens -->
+        <section class="advantages-section section-padding">
+            <div class="container">
+                <h2 class="section-title on-scroll-reveal">Vantagens Competitivas</h2>
+                <div class="grid-cards-advantages">
+                    <div class="advantage-card on-scroll-reveal" data-reveal-delay="0s">
+                        <div class="advantage-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.59a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+                        </div>
+                        <h3 class="advantage-title">Design Moderno</h3>
+                        <p>Criamos interfaces intuitivas e esteticamente apelativas que cativam os seus utilizadores desde o primeiro clique.</p>
+                    </div>
+                    <div class="advantage-card on-scroll-reveal" data-reveal-delay="0.1s">
+                        <div class="advantage-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h3 class="advantage-title">Segurança Robusta</h3>
+                        <p>Implementamos as melhores práticas de segurança para proteger os seus dados e a confiança dos seus clientes.</p>
+                    </div>
+                    <div class="advantage-card on-scroll-reveal" data-reveal-delay="0.2s">
+                        <div class="advantage-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg>
+                        </div>
+                        <h3 class="advantage-title">Performance Otimizada</h3>
+                        <p>Sites e aplicações ultra-rápidos que garantem a melhor performance e posicionamento nos motores de busca.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- E) Seção Planos -->
+        <section class="plans-section section-padding" id="planos">
+            <div class="container">
+                <h2 class="section-title on-scroll-reveal">Planos Flexíveis para Cada Negócio</h2>
+                <div class="grid-cards-plans">
+                    <!-- Plano Start -->
+                    <div class="plan-card on-scroll-reveal" data-reveal-delay="0s">
+                        <h3 class="plan-name">Start</h3>
+                        <p class="plan-price">Kz 150.000<span class="plan-period">/mês</span></p>
+                        <ul class="plan-features">
+                            <li>Website Institucional</li>
+                            <li>Design Responsivo</li>
+                            <li>Formulário de Contato</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-secondary">Assinar</a>
+                    </div>
+                    <!-- Plano Pro (Recomendado) -->
+                    <div class="plan-card plan-recommended on-scroll-reveal" data-reveal-delay="0.1s">
+                        <span class="plan-badge">Recomendado</span>
+                        <h3 class="plan-name">Pro</h3>
+                        <p class="plan-price">Kz 350.000<span class="plan-period">/mês</span></p>
+                        <ul class="plan-features">
+                            <li>Website com Blog e SEO</li>
+                            <li>Design Personalizado</li>
+                            <li>Painel de Gestão</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-primary">Assinar</a>
+                    </div>
+                    <!-- Plano Max -->
+                    <div class="plan-card on-scroll-reveal" data-reveal-delay="0.2s">
+                        <h3 class="plan-name">Max</h3>
+                        <p class="plan-price">Kz 800.000<span class="plan-period">/mês</span></p>
+                        <ul class="plan-features">
+                            <li>Loja Online (E-commerce)</li>
+                            <li>Integração de Pagamentos</li>
+                            <li>Suporte Prioritário</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-secondary">Assinar</a>
+                    </div>
+                    <!-- Plano Ultra -->
+                    <div class="plan-card on-scroll-reveal" data-reveal-delay="0.3s">
+                        <h3 class="plan-name">Ultra</h3>
+                        <p class="plan-price">Kz 1.800.000<span class="plan-period">/mês</span></p>
+                        <ul class="plan-features">
+                            <li>Aplicação Web Complexa</li>
+                            <li>Base de Dados Dedicada</li>
+                            <li>Consultoria Estratégica</li>
+                        </ul>
+                        <a href="#contato" class="btn btn-secondary">Assinar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- F) Seção CTA APP – RENOVALUZ -->
+        <section class="app-cta-section section-padding">
+            <div class="container on-scroll-reveal">
+                <div class="app-cta-content">
+                    <div class="app-cta-text">
+                        <h2 class="section-title text-left">Renovaluz App</h2>
+                        <p>Controle a sua energia na palma da sua mão. O nosso aplicativo exclusivo Renovaluz permite monitorizar o consumo, gerir faturas e otimizar a sua eficiência energética com facilidade e conveniência.</p>
+                        <div class="app-cta-buttons">
+                            <a href="#" class="btn-app-store" aria-label="Baixar na App Store">
+                                <img src="images/app-store.png" alt="Baixar na App Store" style="height: 40px;"> <!-- Defina a altura desejada -->
+                            </a>
+                            <a href="#" class="btn-app-store" aria-label="Disponível no Google Play">
+                                <img src="images/google-play.png" alt="Disponível no Google Play" style="height: 40px;"> <!-- Defina a altura desejada -->
+                            </a>
+                        </div>
+                    </div>
+                    <div class="app-cta-image">
+                        <img src="images/mock.png" alt="Mockup do aplicativo Renovaluz">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- G) Seção Depoimentos -->
+        <section class="testimonials-section section-padding">
+            <div class="container">
+                <h2 class="section-title on-scroll-reveal">O que os Nossos Clientes Dizem</h2>
+                <div class="grid-cards-testimonials">
+                    <blockquote class="testimonial-card on-scroll-reveal" data-reveal-delay="0s">
+                        <p>"A Renovatech transformou a nossa presença digita."</p>
+                        <footer>
+                            <cite class="testimonial-author">Ana Silva</cite>
+                            <span class="testimonial-role">CEO, InovaTech</span>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="testimonial-card on-scroll-reveal" data-reveal-delay="0.1s">
+                        <p>"O novo site é rápido, bonito e funcional."</p>
+                        <footer>
+                            <cite class="testimonial-author">João Costa</cite>
+                            <span class="testimonial-role">Diretor de Marketing, edmay</span>
+                        </footer>
+                    </blockquote>
+                    <blockquote class="testimonial-card on-scroll-reveal" data-reveal-delay="0.2s">
+                        <p>"Uma equipa talentosa e dedicada."</p>
+                        <footer>
+                            <cite class="testimonial-author">Beatriz Martins</cite>
+                            <span class="testimonial-role">Secretaria, Edmay</span>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+        
+        <!-- H) Carrossel de Projetos (Scroll Infinito) -->
+        <section class="projects-section section-padding on-scroll-reveal">
+            <h2 class="section-title">Projetos Recentes</h2>
+            <div class="projects-scroller">
+                <div class="projects-track">
+                    <a href="#" class="project-item" aria-label="Ver projeto da InovaTech"><div>Projeto Renovaluz APP</div></a>
+                    <a href="#" class="project-item" aria-label="Ver projeto da Conecta"><div>Projeto Conecta</div></a>
+                    <a href="#" class="project-item" aria-label="Ver projeto Futuro"><div>Projeto Futuro</div></a>
+                    <a href="#" class="project-item" aria-label="Ver projeto Global"><div>Projeto Global</div></a>
+                    <a href="#" class="project-item" aria-label="Ver projeto Luanda Digital"><div>Projeto Luanda Digital</div></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- I) FAQ (Perguntas Frequentes) -->
+        <section class="faq-section section-padding">
+            <div class="container faq-container">
+                <h2 class="section-title on-scroll-reveal">Perguntas Frequentes</h2>
+                <div class="accordion on-scroll-reveal">
+                    <!-- Item 1 -->
+                    <div class="accordion-item">
+                        <button class="accordion-toggle" aria-expanded="false" aria-controls="faq-content-1">
+                            <span>Quanto tempo leva para desenvolver um site?</span>
+                            <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>
+                        </button>
+                        <div class="accordion-content" id="faq-content-1" aria-hidden="true">
+                            <p>Um site institucional simples pode levar de 2 a 4 semanas, enquanto projetos mais complexos como e-commerces ou aplicações web podem levar de 6 a 12 semanas.</p>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="accordion-item">
+                        <button class="accordion-toggle" aria-expanded="false" aria-controls="faq-content-2">
+                            <span>Vocês oferecem manutenção após o lançamento?</span>
+                             <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>
+                        </button>
+                        <div class="accordion-content" id="faq-content-2" aria-hidden="true">
+                            <p>Sim, oferecemos planos de manutenção mensais que incluem atualizações de segurança, backups, otimizações de performance e suporte técnico.</p>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="accordion-item">
+                        <button class="accordion-toggle" aria-expanded="false" aria-controls="faq-content-3">
+                            <span>O site será otimizado para motores de busca (SEO)?</span>
+                             <svg class="accordion-icon" viewBox="0 0 24 24"><path d="M12 5v14m-7-7h14"/></svg>
+                        </button>
+                        <div class="accordion-content" id="faq-content-3" aria-hidden="true">
+                            <p>Absolutamente. Todos os nossos sites são construídos com as melhores práticas de SEO técnico, incluindo URLs amigáveis, meta tags, performance otimizada etc.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- J) CTA Final -->
+        <section class="final-cta-section section-padding" id="contato">
+            <div class="container text-center on-scroll-reveal">
+                <h2 class="final-cta-title">Pronto para Inovar?</h2>
+                <p class="final-cta-subtitle">Vamos transformar a sua visão numa realidade digital de sucesso. Entre em contato connosco hoje e agende uma consulta gratuita.</p>
+                <a href="https://wa.me/244935995336?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20os%20servi%C3%A7os%20da%20Renovatech." class="btn btn-primary btn-large">Agendar uma Reunião</a>
+            </div>
+        </section>
+
+    </main>
+
+  <!-- =========================================================================
+     BOTÕES FLUTUANTES (VERSÃO FINAL E COMPLETA)
+     ========================================================================== -->
+<div class="floating-buttons-container">
+    
+    <!-- Botão para Alternar Tema (Dark/Light) -->
+    <button id="theme-toggle-fab" class="floating-btn theme-toggle-btn" aria-label="Alternar para modo claro">
+        <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </button>
+
+    <!-- Botão de Perfil (controlado via JavaScript) -->
+    <a href="profile.html" id="profile-fab" class="floating-btn profile-btn" aria-label="Aceder ao Perfil" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+    </a>
+    
+    <!-- Botão WhatsApp -->
+    <a href="https://wa.me/244935995336?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20os%20servi%C3%A7os%20da%20Renovatech." target="_blank" rel="noopener noreferrer" class="floating-btn whatsapp-btn" aria-label="Contactar via WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.357 1.846 6.097l-1.117 4.082 4.162-1.085z"/></svg>
+    </a>
+
+</div>
+
+    <div id="logout-modal-placeholder"></div>
+
+    <!-- =========================================================================
+     RODAPÉ PREMIUM
+     ========================================================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Coluna da Marca e Descrição -->
+                <div class="footer-column footer-brand-column">
+                     <a href="index.html" class="nav-brand">
+                    <img src="images/navbar.png" alt="Renovatech" class="logo">
+                </a>
+                    <p>Construindo o futuro digital, um projeto de cada vez. Inovação e excelência em cada linha de código.</p>
+                </div>
+                <!-- Colunas de Links -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Empresa</h4>
+                    <a href="#" class="footer-link">Sobre Nós</a>
+                    <a href="#" class="footer-link">Carreiras</a>
+                    <a href="#" class="footer-link">Imprensa</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Recursos</h4>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Portfólio</a>
+                    <a href="#" class="footer-link">Guias</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Legal</h4>
+                    <a href="#" class="footer-link">Termos de Serviço</a>
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Cookies</a>
+                </div>
+                <!-- Coluna da Newsletter -->
+                <div class="footer-column footer-newsletter-column">
+                    <h4 class="footer-title">Assine a nossa Newsletter</h4>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <label for="newsletter-email" class="sr-only">Seu email</label>
+                        <input type="email" id="newsletter-email" placeholder="Seu melhor email" required>
+                        <button type="submit">Assinar</button>
+                        <div id="newsletter-status" class="newsletter-status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Renovatech, 2025. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Script Principal (carregado no final para melhor performance) -->
+    <script src="js/main.js"></script>
+     <script src="js/logout-modal.js"></script>
+
+</body>
+</html>

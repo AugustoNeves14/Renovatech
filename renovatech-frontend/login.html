@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal do Cliente - Renovatech</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Assumindo que você tem este ficheiro de estilos -->
+    <link rel="stylesheet" href="css/login.css"> 
+    <link rel="stylesheet" href="css/style.css"> 
+</head>
+<body>
+    <canvas id="particle-background"></canvas>
+
+    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar para modo claro">
+        <i class="bi bi-sun-fill theme-icon-light"></i>
+        <i class="bi bi-moon-stars-fill theme-icon-dark"></i>
+    </button>
+
+    <main class="auth-container">
+        
+        <section class="branding-panel">
+            <a href="index.html" class="nav-brand">
+                <img src="images/navbar.png" alt="Renovatech" class="logo">
+            </a>
+            <div class="branding-visual">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="20" fill="var(--color-primary-tech-blue)"/>
+                    <g class="orbit orbit-1"><ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><circle cx="180" cy="100" r="8" fill="var(--color-light-blue)"/></g>
+                    <g class="orbit orbit-2"><ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" transform="rotate(60 100 100)"/><circle cx="180" cy="100" r="8" fill="var(--color-light-blue)" transform="rotate(60 100 100)"/></g>
+                    <g class="orbit orbit-3"><ellipse cx="100" cy="100" rx="80" ry="30" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" transform="rotate(120 100 100)"/><circle cx="180" cy="100" r="8" fill="var(--color-light-blue)" transform="rotate(120 100 100)"/></g>
+                </svg>
+            </div>
+            <div class="branding-content">
+                <h1>O Futuro é Construído Aqui.</h1>
+                <p>Acesse nosso site e fique por dentro de todas as atualizações.</p>
+            </div>
+        </section>
+
+        <section class="form-panel">
+            <div class="form-wrapper">
+                
+                <div id="login-form" class="auth-form active">
+                    <h2 class="form-title">Aceder ao Portal</h2>
+                    <form novalidate>
+                        <div id="login-alert-container"></div>
+                        <div class="form-group">
+                            <label for="login-email">Endereço de Email</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-envelope-fill"></i>
+                                <input type="email" id="login-email" class="form-control" placeholder="seu.email@exemplo.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Senha</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-lock-fill"></i>
+                                <input type="password" id="login-password" class="form-control" placeholder="Sua senha secreta" required>
+                            </div>
+                        </div>
+                        <div class="form-options">
+                            <div></div>
+                            <a href="#" class="form-link" data-form-switcher="forgot-password-form">Esqueceu a senha?</a>
+                        </div>
+                        <button type="submit" class="btn-submit-glow">Entrar</button>
+                        <p class="form-switch-text">Não tem uma conta? <a href="#" class="form-link" data-form-switcher="register-form">Crie uma agora</a></p>
+                    </form>
+                </div>
+
+                <div id="register-form" class="auth-form">
+                    <h2 class="form-title">Criar Nova Conta</h2>
+                    <form novalidate>
+                        <div id="register-alert-container"></div>
+                        <div class="form-group">
+                            <label for="register-name">Nome Completo</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-person-fill"></i>
+                                <input type="text" id="register-name" class="form-control" placeholder="Como devemos chamá-lo?" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-envelope-fill"></i>
+                                <input type="email" id="register-email" class="form-control" placeholder="seu.email@exemplo.com" required>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="register-password">Crie uma Senha Forte</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-lock-fill"></i>
+                                <input type="password" id="register-password" class="form-control" placeholder="Pelo menos 6 caracteres" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                             <label for="confirm-password">Confirme a Senha</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-shield-lock-fill"></i>
+                                <input type="password" id="confirm-password" class="form-control" placeholder="Repita a senha" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-glow">Criar Conta</button>
+                        <p class="form-switch-text">Já tem uma conta? <a href="#" class="form-link" data-form-switcher="login-form">Faça login</a></p>
+                    </form>
+                </div>
+
+                <div id="forgot-password-form" class="auth-form">
+                    <h2 class="form-title">Recuperar Acesso</h2>
+                    <p class="form-intro-text">Insira o seu email para receber as instruções de recuperação.</p>
+                    <form novalidate>
+                        <div id="forgot-alert-container"></div>
+                        <div class="form-group">
+                            <label for="forgot-email">Email Registado</label>
+                            <div class="input-wrapper">
+                                <i class="bi bi-envelope-check-fill"></i>
+                                <input type="email" id="forgot-email" class="form-control" placeholder="seu.email@exemplo.com" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit-glow">Enviar Link</button>
+                        <p class="form-switch-text"><a href="#" class="form-link" data-form-switcher="login-form">Lembrou-se da senha? Voltar</a></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="js/login.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Serviço - Renovatech</title> <!-- Título será atualizado via JS -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/service-detail.css"> <!-- Novo CSS -->
+    <link rel="stylesheet" href="css/logout-modal.css">
+</head>
+<body>
+    <!-- HEADER E NAVEGAÇÃO (Copie o mesmo da página services.html) -->
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <div class="nav-container">
+                <a href="index.html" class="nav-brand"><img src="images/navbar.png" alt="Renovatech" class="logo"></a>
+                <nav class="nav-menu-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="services.html" class="nav-link active">Serviços</a>
+                    <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                    <a href="contato.html" class="nav-link">Contato</a>
+                </nav>
+                <div class="nav-actions">
+                    <a href="login.html" id="login-button" class="btn btn-primary">Login</a>
+                    <button id="logout-button" class="btn btn-primary" style="display: none;">Sair</button>
+                </div>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu"><span class="nav-toggle-line"></span><span class="nav-toggle-line"></span><span class="nav-toggle-line"></span></button>
+            </div>
+        </div>
+    </header>
+    <aside class="nav-drawer" id="nav-drawer" aria-hidden="true"><nav><ul><li><a href="index.html" class="nav-drawer-link">Home</a></li><li><a href="services.html" class="nav-drawer-link">Serviços</a></li><li><a href="sobre.html" class="nav-drawer-link">Sobre Nós</a></li><li><a href="contato.html" class="nav-drawer-link">Contato</a></li><li class="nav-drawer-divider"></li><li><a href="login.html" id="mobile-login-link" class="nav-drawer-link">Login</a></li><li><a href="#" id="mobile-logout-link" class="nav-drawer-link" style="display: none;">Sair</a></li></ul></nav></aside>
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <main>
+        <div id="service-dynamic-content">
+            <!-- Esta div será preenchida pelo JS. Mostra um 'loading' inicial. -->
+            <div class="container section-padding text-center">
+                <h2>A Carregar Detalhes do Serviço...</h2>
+            </div>
+        </div>
+    </main>
+
+   <!-- =========================================================================
+     BOTÕES FLUTUANTES (VERSÃO FINAL E COMPLETA)
+     ========================================================================== -->
+<div class="floating-buttons-container">
+    
+    <!-- Botão para Alternar Tema (Dark/Light) -->
+    <button id="theme-toggle-fab" class="floating-btn theme-toggle-btn" aria-label="Alternar para modo claro">
+        <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+    </button>
+
+    <!-- Botão de Perfil (controlado via JavaScript) -->
+    <a href="profile.html" id="profile-fab" class="floating-btn profile-btn" aria-label="Aceder ao Perfil" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+    </a>
+    
+    <!-- Botão WhatsApp -->
+    <a href="https://wa.me/244935995336?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20os%20servi%C3%A7os%20da%20Renovatech." target="_blank" rel="noopener noreferrer" class="floating-btn whatsapp-btn" aria-label="Contactar via WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.886-.001 2.269.655 4.357 1.846 6.097l-1.117 4.082 4.162-1.085z"/></svg>
+    </a>
+
+</div>
+
+    <div id="logout-modal-placeholder"></div>
+
+    <!-- =========================================================================
+     RODAPÉ PREMIUM
+     ========================================================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Coluna da Marca e Descrição -->
+                <div class="footer-column footer-brand-column">
+                     <a href="index.html" class="nav-brand">
+                    <img src="images/navbar.png" alt="Renovatech" class="logo">
+                </a>
+                    <p>Construindo o futuro digital, um projeto de cada vez. Inovação e excelência em cada linha de código.</p>
+                </div>
+                <!-- Colunas de Links -->
+                <div class="footer-column">
+                    <h4 class="footer-title">Empresa</h4>
+                    <a href="#" class="footer-link">Sobre Nós</a>
+                    <a href="#" class="footer-link">Carreiras</a>
+                    <a href="#" class="footer-link">Imprensa</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Recursos</h4>
+                    <a href="#" class="footer-link">Blog</a>
+                    <a href="#" class="footer-link">Portfólio</a>
+                    <a href="#" class="footer-link">Guias</a>
+                </div>
+                <div class="footer-column">
+                    <h4 class="footer-title">Legal</h4>
+                    <a href="#" class="footer-link">Termos de Serviço</a>
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Cookies</a>
+                </div>
+                <!-- Coluna da Newsletter -->
+                <div class="footer-column footer-newsletter-column">
+                    <h4 class="footer-title">Assine a nossa Newsletter</h4>
+                    <form id="newsletter-form" class="newsletter-form">
+                        <label for="newsletter-email" class="sr-only">Seu email</label>
+                        <input type="email" id="newsletter-email" placeholder="Seu melhor email" required>
+                        <button type="submit">Assinar</button>
+                        <div id="newsletter-status" class="newsletter-status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Renovatech, 2025. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- SCRIPTS PARA ESTA PÁGINA (A ORDEM É MUITO IMPORTANTE) -->
+    <script src="js/main.js"></script>
+    <script src="js/logout-modal.js"></script>
+    <script src="js/service-data.js"></script> <!-- 1º: Carrega os dados -->
+    <script src="js/service-detail.js"></script> <!-- 2º: Roda o script que usa os dados -->
+</body>
+</html>

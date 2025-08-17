@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Renovatech</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Barra Lateral de Navegação -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Renovatech</h2>
+                <h3>Admin</h3>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="nav-link active" data-target="overview">Visão Geral</a></li>
+                    <li><a href="#" class="nav-link" data-target="users">Usuários</a></li>
+                    <li><a href="#" class="nav-link" data-target="services">Serviços</a></li>
+                    <li><a href="#" class="nav-link" data-target="news">Notícias</a></li>
+                    <li><a href="#" class="nav-link" data-target="slides">Slides</a></li>
+                    <li><a href="#" class="nav-link" data-target="gallery">Galeria</a></li>
+                    <li><a href="#" id="logout-btn">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Seção de Visão Geral -->
+            <section id="overview" class="content-section active">
+                <h1>Visão Geral</h1>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Total de Usuários</h4>
+                        <p id="stats-totalUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Serviços Cadastrados</h4>
+                        <p id="stats-totalServices">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Notícias Publicadas</h4>
+                        <p id="stats-totalNews">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Itens na Galeria</h4>
+                        <p id="stats-totalGalleryItems">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção Genérica para Tabelas -->
+            <section id="table-section" class="content-section">
+                <div class="table-header">
+                    <h1 id="table-title">Gerenciamento</h1>
+                    <button id="add-new-btn" class="btn btn-primary">Adicionar Novo</button>
+                </div>
+                <div class="table-wrapper">
+                    <table id="data-table">
+                        <thead></thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Itens -->
+    <div id="form-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2 id="form-title">Formulário</h2>
+            <form id="manage-form">
+                <input type="hidden" id="edit-item-id">
+                <div id="form-fields">
+                    <!-- Campos do formulário serão injetados aqui via JS -->
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
