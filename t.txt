@@ -1,0 +1,24 @@
+renovatech-backend/
+|-- config/
+|   |-- db.js
+|-- controllers/
+|   |-- authController.js
+|   |-- servicesController.js
+|   |-- slidesController.js
+|   |-- newsController.js
+|-- models/
+|   |-- User.js
+|   |-- Service.js
+|   |-- Slide.js
+|   |-- News.js
+|-- routes/
+|   |-- auth.js
+|   |-- services.js
+|   |-- slides.js
+|   |-- news.js
+|-- database/
+|   |-- schema.sql
+|   |-- seed.sql
+|-- .env
+|-- package.json
+|-- server.js
