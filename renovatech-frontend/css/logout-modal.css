@@ -1,0 +1,139 @@
+/* ==========================================================================
+   MODAL DE LOGOUT - ESTILO "CYBER-GLASS LAUNCHER"
+   ========================================================================== */
+
+.logout-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background-color: rgba(10, 15, 38, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s 0.4s;
+}
+
+.logout-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+}
+
+.logout-modal-content {
+    background: var(--surface-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 550px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    transform: scale(0.95) translateY(20px);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.4s ease 0.1s;
+}
+
+.logout-modal-overlay.visible .logout-modal-content {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.logout-modal-header {
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.logout-modal-header h2 {
+    color: var(--text-light);
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.logout-modal-header p {
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.logout-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.time-display {
+    text-align: center;
+}
+
+.time-display .time {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-shadow: 0 0 10px var(--accent-green);
+}
+
+.time-display .date {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: capitalize;
+}
+
+.quick-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.quick-nav-link {
+    background: var(--surface-glass);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    border-radius: 12px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    flex-grow: 1;
+    transition: all 0.3s ease;
+}
+
+.quick-nav-link:hover {
+    color: var(--text-light);
+    border-color: var(--accent-green);
+    transform: translateY(-5px);
+}
+
+.quick-nav-link i {
+    font-size: 1.8rem;
+    color: var(--accent-green);
+}
+
+.quick-nav-link span {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.logout-modal-footer {
+    text-align: center;
+}
+
+.goodbye-message {
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}

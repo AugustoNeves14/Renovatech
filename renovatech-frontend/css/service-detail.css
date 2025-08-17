@@ -1,0 +1,114 @@
+/* CSS para a página de detalhes do serviço */
+.text-center { text-align: center; }
+
+.service-detail-hero {
+    text-align: center;
+    background-color: var(--card-bg-color);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.service-price {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.service-main-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+@media (min-width: 992px) {
+    .service-grid {
+        grid-template-columns: 2.5fr 1fr;
+    }
+}
+
+.service-description-wrapper h2 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+.service-description-wrapper p {
+    line-height: 1.8;
+    font-size: 1.05rem;
+    text-align: justify;
+}
+
+.service-sidebar {
+    background-color: var(--card-bg-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    height: fit-content; /* Para não esticar desnecessariamente */
+    position: sticky;
+    top: 120px; /* Alinha com o header */
+}
+
+.service-sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.related-news-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+}
+
+.related-news-list li {
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--primary-color-light);
+    padding-left: 1rem;
+}
+
+.related-news-list a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.2s;
+}
+
+.related-news-list a:hover {
+    color: var(--primary-color);
+}
+
+.btn-full {
+    width: 100%;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}

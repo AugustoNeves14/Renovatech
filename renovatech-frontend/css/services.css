@@ -1,0 +1,825 @@
+/* ==========================================================================
+   1. CONFIGURAÇÃO, VARIÁVEIS E RESET (BASEADO NO SEU MODELO)
+   ========================================================================== */
+:root {
+    /* Paleta de Cores */
+    --color-primary-tech-blue: #0352bb;
+    --color-light-blue: #2d9cdb;
+    --color-light-gray: #f5f5f5;
+    --color-white: #ffffff;
+    --color-soft-black: #1a1a1a;
+
+    /* Variáveis de Tema (Padrão: Dark) */
+    --color-bg: #0f172a; /* Azul muito escuro */
+    --color-bg-secondary: #1e293b; /* Azul escuro mais claro */
+    --color-text: var(--color-light-gray);
+    --color-text-muted: #94a3b8; /* Cinza azulado */
+    --color-heading: var(--color-white);
+    --color-border: rgba(148, 163, 184, 0.2);
+    --color-header-bg: rgba(15, 23, 42, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+
+    /* Tipografia */
+    --font-family-base: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    /* UI e Layout */
+    --container-max-width: 1280px;
+    --container-padding: 1.5rem;
+    --border-radius: 8px; /* Mantido do seu modelo */
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Z-Indexes */
+    --z-index-modal-overlay: 2000;
+    --z-index-header: 1000;
+}
+
+/* Tema Claro */
+[data-theme="light"] {
+    --color-bg: var(--color-light-gray);
+    --color-bg-secondary: var(--color-white);
+    --color-text: var(--color-soft-black);
+    --color-text-muted: #555;
+    --color-heading: var(--color-soft-black);
+    --color-border: #e2e8f0;
+    --color-header-bg: rgba(245, 245, 245, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Reset Básico e Padrões */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+h1, h2, h3, h4 {
+    color: var(--color-heading);
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.section-padding {
+    padding-top: clamp(4rem, 10vw, 6rem);
+    padding-bottom: clamp(4rem, 10vw, 6rem);
+}
+
+/* ==========================================================================
+   2. CABEÇALHO E COMPONENTES GERAIS
+   ========================================================================== */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-header);
+    background-color: var(--color-header-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-medium), border-color var(--transition-medium);
+}
+
+/* AJUSTE AQUI: Altura do container da navbar para 80px */
+.nav-container { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    height: 80px; 
+}
+
+.nav-brand { font-size: 1.5rem; font-weight: 700; color: var(--color-heading); text-decoration: none; }
+.nav-brand span { color: var(--color-light-blue); }
+.nav-menu-desktop a {
+    color: var(--color-text-muted); text-decoration: none; margin-left: 2rem;
+    font-weight: 500; position: relative; padding-bottom: 0.5rem;
+    transition: color var(--transition-fast);
+}
+.nav-menu-desktop a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 2px; background: var(--color-light-blue);
+    transform: scaleX(0); transform-origin: left; transition: transform var(--transition-fast);
+}
+.nav-menu-desktop a:hover, .nav-menu-desktop a.active { color: var(--color-white); }
+[data-theme="light"] .nav-menu-desktop a:hover, [data-theme="light"] .nav-menu-desktop a.active { color: var(--color-heading); }
+.nav-menu-desktop a:hover::after, .nav-menu-desktop a.active::after { transform: scaleX(1); }
+
+.theme-toggle-btn {
+    background: transparent; border: none; color: var(--color-text-muted);
+    font-size: 1.2rem; cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast);
+    padding: 0.5rem;
+}
+.theme-toggle-btn:hover { color: var(--color-light-blue); transform: scale(1.1); }
+.theme-icon-light { display: none; }
+[data-theme="light"] .theme-icon-dark { display: none; }
+[data-theme="light"] .theme-icon-light { display: block; }
+
+
+/* ==========================================================================
+   3. SEÇÃO HERO DA PÁGINA
+   ========================================================================== */
+.page-hero {
+    text-align: center;
+    padding: clamp(4rem, 10vh, 6rem) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.page-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+.page-hero .lead { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--color-text-muted); max-width: 700px; margin: 0 auto; }
+
+/* ==========================================================================
+   4. GRELHA E CARDS DE SERVIÇOS
+   ========================================================================== */
+.services-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+/* ESTILO DO CARD - BASEADO NO SEU MODELO .plan-card */
+.service-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+.card-icon { font-size: 2.5rem; color: var(--color-light-blue); margin-bottom: 1.5rem; }
+.card-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 1rem; }
+.card-description { color: var(--color-text-muted); flex-grow: 1; margin-bottom: 2rem; }
+.card-buttons { display: flex; gap: 1rem; margin-top: auto; }
+
+/* ESTILOS DOS BOTÕES - BASEADO NO SEU MODELO */
+.btn {
+    display: inline-block; padding: 0.8rem 1.5rem; border-radius: 50px;
+    font-weight: 600; text-decoration: none; text-align: center;
+    border: 2px solid transparent; transition: all var(--transition-medium); cursor: pointer;
+    width: 100%;
+}
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-primary-tech-blue) 0%, var(--color-light-blue) 100%);
+    color: var(--color-white); background-size: 200% auto;
+}
+.btn-primary:hover {
+    background-position: right center; box-shadow: 0 4px 20px rgba(45, 156, 219, 0.3);
+    transform: translateY(-3px);
+}
+.btn-secondary {
+    background-color: transparent; border-color: var(--color-border);
+    color: var(--color-text);
+}
+[data-theme="light"] .btn-secondary { border-color: var(--color-primary-tech-blue); color: var(--color-primary-tech-blue); }
+.btn-secondary:hover {
+    background-color: var(--color-light-blue); border-color: var(--color-light-blue);
+    color: var(--color-white); transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   5. MODAL IMERSIVO
+   ========================================================================== */
+.modal-overlay {
+    position: fixed; inset: 0; z-index: var(--z-index-modal-overlay);
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s 0.4s linear;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; transition-delay: 0s; }
+.modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
+
+.modal-content {
+    background-color: var(--color-bg); border-radius: var(--border-radius);
+    border: 1px solid var(--color-border); width: 90%; max-width: 900px;
+    height: 90vh; overflow-y: auto; padding: clamp(2rem, 5vw, 3rem);
+    position: relative; transform: scale(0.95); opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+.modal-close {
+    position: absolute; top: 1.5rem; right: 1.5rem; background: transparent;
+    border: none; font-size: 2.5rem; line-height: 1; color: var(--color-text-muted);
+    cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.modal-close:hover { color: var(--color-light-blue); transform: rotate(90deg); }
+
+.modal-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+.modal-header .price { font-size: 1.25rem; font-weight: 600; color: var(--color-light-blue); margin-bottom: 2rem; }
+.modal-body p { font-size: 1.1rem; line-height: 1.8; color: var(--color-text-muted); }
+.modal-body h4 {
+    font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem;
+    border-left: 3px solid var(--color-primary-tech-blue); padding-left: 1rem;
+}
+.modal-features-list { list-style: none; padding-left: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.modal-features-list li { display: flex; align-items: flex-start; gap: 1rem; }
+.modal-features-list .bi { color: var(--color-light-blue); font-size: 1.2rem; margin-top: 0.2rem; }
+.modal-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; }
+
+/* ==========================================================================
+   6. RODAPÉ (BASEADO NO SEU MODELO)
+   ========================================================================== */
+.main-footer { background-color: var(--color-bg-secondary); color: var(--color-text-muted); padding: 4rem 0 2rem 0; font-size: 0.9rem; }
+.footer-grid { display: grid; gap: 2rem; margin-bottom: 3rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.footer-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-heading); }
+.footer-link { display: block; color: var(--color-text-muted); padding: 0.25rem 0; text-decoration: none; transition: color var(--transition-fast); }
+.footer-link:hover { color: var(--color-light-blue); }
+.footer-bottom { border-top: 1px solid var(--color-border); padding-top: 2rem; text-align: center; }
+
+/* Animações de Entrada */
+.on-scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--transition-medium), transform 0.6s var(--transition-medium);
+}
+.on-scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsividade para o menu desktop */
+@media (max-width: 768px) {
+    .nav-menu-desktop {
+        display: none;
+    }
+}
+/* ==========================================================================
+   CSS Específico para a Página de Serviços
+   ========================================================================== */
+
+/* --- SEÇÃO HERO --- */
+.page-hero {
+    text-align: center;
+    padding: clamp(3rem, 8vh, 5rem) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+.page-hero .hero-title {
+    font-size: clamp(2.2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+.page-hero .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    color: var(--color-text-muted);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* --- GRELHA E CARDS DE SERVIÇOS (MOBILE-FIRST: MATRIZ 3X3) --- */
+.services-grid {
+    display: grid;
+    gap: 1rem; /* Espaçamento menor para mobile */
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ESTILO DO CARD "MINIATURIZADO" PARA MOBILE */
+.service-card {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px var(--shadow-color);
+}
+.card-icon {
+    font-size: 1.8rem; /* Ícone menor */
+    color: var(--color-light-blue);
+    margin-bottom: 0.75rem;
+}
+.card-title {
+    font-size: 0.9rem; /* Título menor */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    min-height: 38px; /* Garante alinhamento */
+}
+.card-description {
+    display: none; /* Descrição oculta no modo miniatura */
+}
+.card-buttons {
+    display: flex;
+    flex-direction: column; /* Botões empilhados */
+    gap: 0.5rem;
+    margin-top: auto;
+}
+.btn.btn-details-mini, .btn.btn-subscribe-mini {
+    padding: 0.5rem 0.5rem; /* Padding menor */
+    font-size: 0.8rem; /* Fonte menor */
+    width: 100%;
+}
+
+/* --- MODAL IMERSIVO (Sem alterações, já é responsivo) --- */
+.modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s 0.4s linear;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; transition-delay: 0s; }
+.modal-overlay.active .modal-content { transform: scale(1); opacity: 1; }
+
+.modal-content {
+    background-color: var(--color-bg); border-radius: var(--border-radius);
+    border: 1px solid var(--color-border); width: 90%; max-width: 900px;
+    height: 90vh; overflow-y: auto; padding: clamp(2rem, 5vw, 3rem);
+    position: relative; transform: scale(0.95); opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+.modal-close {
+    position: absolute; top: 1.5rem; right: 1.5rem; background: transparent;
+    border: none; font-size: 2.5rem; line-height: 1; color: var(--color-text-muted);
+    cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast);
+}
+.modal-close:hover { color: var(--color-light-blue); transform: rotate(90deg); }
+.modal-header h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.5rem; }
+.modal-header .price { font-size: 1.25rem; font-weight: 600; color: var(--color-light-blue); margin-bottom: 2rem; }
+.modal-body p { font-size: 1.1rem; line-height: 1.8; color: var(--color-text-muted); }
+.modal-body h4 { font-weight: 600; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 3px solid var(--color-primary-tech-blue); padding-left: 1rem; }
+.modal-features-list { list-style: none; padding-left: 0; display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.modal-features-list li { display: flex; align-items: flex-start; gap: 1rem; }
+.modal-features-list .bi { color: var(--color-light-blue); font-size: 1.2rem; margin-top: 0.2rem; }
+.modal-footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--color-border); text-align: center; }
+
+/* ==========================================================================
+   RESPONSIVIDADE: Ajustes para telas maiores
+   ========================================================================== */
+
+/* TABLET (768px e acima) - Passa para 2 colunas */
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    .service-card {
+        padding: 1.5rem; /* Aumenta um pouco o padding */
+    }
+    .card-title {
+        font-size: 1.1rem; /* Aumenta o título */
+    }
+    .card-description {
+        display: block; /* Mostra a descrição */
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    .card-buttons {
+        flex-direction: row; /* Botões lado a lado */
+        gap: 1rem;
+    }
+}
+
+/* DESKTOP (1024px e acima) - Passa para 3 colunas com tamanho completo */
+@media (min-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+    /* Reverte para os estilos originais do card */
+    .service-card {
+        padding: 2rem;
+    }
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .card-title {
+        font-size: 1.4rem;
+        min-height: auto;
+    }
+     .card-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    .btn.btn-details-mini, .btn.btn-subscribe-mini {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+/* ==========================================================================
+   CSS ADICIONAL PARA OS BOTÕES DE LOGIN/CADASTRO
+   ========================================================================== */
+
+/* --- Container para os botões de ação no desktop --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espaçamento entre os botões */
+}
+
+/* --- Estilo Base dos Botões (reutilizável) --- */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem; /* Tamanho do botão */
+    border-radius: 50px; /* Formato de pílula */
+    font-weight: 600;
+    font-size: 0.9rem; /* Tamanho da fonte */
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+/* --- Estilo do Botão Primário (Criar Conta) --- */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-primary-tech-blue) 0%, var(--color-light-blue) 100%);
+    color: var(--color-white);
+    background-size: 200% auto;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+    background-position: right center;
+    box-shadow: 0 4px 20px rgba(45, 156, 219, 0.3);
+    transform: translateY(-3px);
+}
+
+/* --- Estilo do Botão Secundário (Login) --- */
+.btn-secondary-outline {
+    background-color: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+[data-theme="light"] .btn-secondary-outline {
+    border-color: var(--color-primary-tech-blue);
+    color: var(--color-primary-tech-blue);
+}
+.btn-secondary-outline:hover, .btn-secondary-outline:focus-visible {
+    background-color: var(--color-light-blue);
+    border-color: var(--color-light-blue);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* --- Divisor no Menu Mobile (Drawer) --- */
+.nav-drawer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+}
+
+/* --- Responsividade --- */
+/* Esconde os botões de ação do desktop em telas pequenas */
+@media (max-width: 1023px) {
+    .nav-actions {
+        display: none;
+    }
+}
+.page-hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+.hero-media video,
+.hero-media .slides {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slides {
+    display: flex;
+    animation: slideShow 9s infinite;
+}
+.slides img {
+    flex: 0 0 100%;
+    object-fit: cover;
+}
+.hidden {
+    display: none;
+}
+
+@keyframes slideShow {
+    0% {transform: translateX(0);}
+    33% {transform: translateX(-100%);}
+    66% {transform: translateX(-200%);}
+    100% {transform: translateX(0);}
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 35vh;
+}
+
+/* =============================================
+   ESTILOS ADICIONAIS PARA A PÁGINA DE SERVIÇOS
+   ============================================= */
+
+/* Título da Categoria de Serviço */
+.category-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+/* Botão de Detalhes do Card */
+.btn-details {
+    background-color: transparent;
+    border: 2px solid var(--primary-color-light);
+    color: var(--primary-color-light);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: auto; /* Empurra o botão para o fundo do card */
+}
+
+.btn-details:hover {
+    background-color: var(--primary-color-light);
+    color: var(--bg-color);
+}
+
+/* Estrutura do Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none; /* Inicialmente oculto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.modal-close-btn:hover {
+    opacity: 1;
+}
+
+/* Conteúdo interno do Modal */
+#modal-body h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+#modal-body .modal-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+#modal-body p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+#modal-body .modal-cta {
+    margin-top: 2rem;
+    display: block;
+    text-align: center;
+}
+
+/* =============================================
+   ESTILOS DA GRELHA DE SERVIÇOS
+   ============================================= */
+
+/* A classe .grid-cards-plans já existe no style.css, mas vamos garantir 
+   que ela se comporte como a matriz desejada aqui. */
+
+.grid-cards-plans {
+    display: grid;
+    gap: 1.5rem;
+    /* Mobile-first: Inicia com 1 coluna em telas muito pequenas */
+    grid-template-columns: 1fr;
+}
+
+/* Telas maiores que 550px (Mobile 2x2) */
+@media (min-width: 550px) {
+    .grid-cards-plans {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telas de tablet (mantemos 2 colunas ou podemos ir para 3) */
+@media (min-width: 768px) {
+    .grid-cards-plans {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Telas de desktop (Desktop 4x4) */
+@media (min-width: 1200px) {
+    .grid-cards-plans {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Garante que os cards tenham a mesma altura em cada linha */
+.plan-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.plan-features {
+    flex-grow: 1; /* Faz a lista de features ocupar o espaço disponível */
+}
+
+
+/* =============================================
+   TRUNCAMENTO DE TEXTO NOS CARDS (MOBILE)
+   ============================================= */
+@media (max-width: 767px) {
+    .plan-features {
+        display: -webkit-box;
+        -webkit-line-clamp: 3; /* Número de linhas a serem exibidas */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /* Oculta o resto do texto, que será visível no modal */
+    }
+}
+
+
+/* =============================================
+   ESTILOS DO BOTÃO DE DETALHES E MODAL
+   ============================================= */
+
+.btn-details {
+    background-color: transparent;
+    border: 2px solid var(--primary-color-light);
+    color: var(--primary-color-light);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 1rem; /* Espaçamento do botão em relação ao conteúdo acima */
+}
+
+.btn-details:hover {
+    background-color: var(--primary-color-light);
+    color: var(--bg-color);
+}
+
+/* Estrutura do Modal (sem alterações, já está robusto) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Um pouco mais escuro para focar */
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 1rem;
+}
+
+.modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.modal-close-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+/* Conteúdo interno do Modal */
+#modal-body h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+#modal-body .modal-price {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+#modal-body p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+#modal-body .modal-cta {
+    margin-top: 2rem;
+    display: block;
+    text-align: center;
+    width: 100%;
+}

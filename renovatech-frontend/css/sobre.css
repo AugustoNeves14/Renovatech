@@ -1,0 +1,271 @@
+/* ==========================================================================
+   1. CONFIGURAÇÃO, VARIÁVEIS E ESTILOS GERAIS
+   ========================================================================== */
+:root {
+    --color-primary-tech-blue: #0352bb;
+    --color-light-blue: #2d9cdb;
+    --color-light-gray: #f5f5f5;
+    --color-white: #ffffff;
+    --color-soft-black: #1a1a1a;
+    --color-bg: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-text: var(--color-light-gray);
+    --color-text-muted: #94a3b8;
+    --color-heading: var(--color-white);
+    --color-border: rgba(148, 163, 184, 0.2);
+    --color-header-bg: rgba(15, 23, 42, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --font-family-base: 'Poppins', sans-serif;
+    --container-max-width: 1280px;
+    --container-padding: 1.5rem;
+    --border-radius: 8px;
+    --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-medium: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --z-index-header: 1000;
+}
+
+[data-theme="light"] {
+    --color-bg: var(--color-light-gray);
+    --color-bg-secondary: var(--color-white);
+    --color-text: var(--color-soft-black);
+    --color-text-muted: #555;
+    --color-heading: var(--color-soft-black);
+    --color-border: #e2e8f0;
+    --color-header-bg: rgba(245, 245, 245, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+    transition: background-color var(--transition-medium), color var(--transition-medium);
+}
+h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.3; font-weight: 600; }
+.container { max-width: var(--container-max-width); margin: 0 auto; padding: 0 var(--container-padding); }
+.section-padding { padding-top: clamp(4rem, 10vw, 6rem); padding-bottom: clamp(4rem, 10vw, 6rem); }
+.section-title { font-size: clamp(2rem, 5vw, 2.75rem); text-align: center; margin-bottom: 3rem; font-weight: 700; }
+.section-title.text-left { text-align: left; }
+
+/* ==========================================================================
+   2. CABEÇALHO, RODAPÉ E COMPONENTES GLOBAIS
+   ========================================================================== */
+.main-header { position: sticky; top: 0; z-index: var(--z-index-header); background-color: var(--color-header-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); transition: background-color var(--transition-medium), border-color var(--transition-medium); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+.nav-brand { font-size: 1.5rem; font-weight: 700; color: var(--color-heading); text-decoration: none; }
+.nav-brand span { color: var(--color-light-blue); }
+.nav-menu-desktop a { color: var(--color-text-muted); text-decoration: none; margin-left: 2rem; font-weight: 500; position: relative; padding-bottom: 0.5rem; transition: color var(--transition-fast); }
+.nav-menu-desktop a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--color-light-blue); transform: scaleX(0); transform-origin: left; transition: transform var(--transition-fast); }
+.nav-menu-desktop a:hover, .nav-menu-desktop a.active { color: var(--color-white); }
+[data-theme="light"] .nav-menu-desktop a:hover, [data-theme="light"] .nav-menu-desktop a.active { color: var(--color-heading); }
+.nav-menu-desktop a:hover::after, .nav-menu-desktop a.active::after { transform: scaleX(1); }
+.theme-toggle-btn { background: transparent; border: none; color: var(--color-text-muted); font-size: 1.2rem; cursor: pointer; transition: color var(--transition-fast), transform var(--transition-fast); padding: 0.5rem; }
+.theme-toggle-btn:hover { color: var(--color-light-blue); transform: scale(1.1); }
+.theme-icon-light { display: none; }
+[data-theme="light"] .theme-icon-dark { display: none; }
+[data-theme="light"] .theme-icon-light { display: block; }
+.main-footer { background-color: var(--color-bg-secondary); color: var(--color-text-muted); padding: 4rem 0 2rem 0; font-size: 0.9rem; }
+.footer-grid { display: grid; gap: 2rem; margin-bottom: 3rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.footer-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: var(--color-heading); }
+.footer-link { display: block; color: var(--color-text-muted); padding: 0.25rem 0; text-decoration: none; transition: color var(--transition-fast); }
+.footer-link:hover { color: var(--color-light-blue); }
+.footer-bottom { border-top: 1px solid var(--color-border); padding-top: 2rem; text-align: center; }
+
+/* ==========================================================================
+   3. ESTILOS ESPECÍFICOS DA PÁGINA "SOBRE"
+   ========================================================================== */
+.page-hero { text-align: center; padding: clamp(4rem, 10vh, 6rem) 0; border-bottom: 1px solid var(--color-border); }
+.page-hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 800; margin-bottom: 1rem; }
+.page-hero .lead { font-size: clamp(1rem, 2.5vw, 1.25rem); color: var(--color-text-muted); max-width: 700px; margin: 0 auto; }
+
+.mission-section { background-color: var(--color-bg-secondary); }
+.mission-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+.mission-item { margin-top: 2rem; }
+.mission-item h4 { color: var(--color-light-blue); margin-bottom: 0.5rem; font-weight: 700; }
+.visual-placeholder { display: flex; align-items: center; justify-content: center; background-color: var(--color-bg); border-radius: 50%; width: 100%; max-width: 350px; height: 350px; margin: auto; border: 1px solid var(--color-border); }
+.visual-placeholder .bi { font-size: 6rem; color: var(--color-primary-tech-blue); }
+
+.timeline-section { position: relative; }
+.timeline-container { position: relative; max-width: 900px; margin: 0 auto; }
+.timeline-container::after { content: ''; position: absolute; width: 3px; background-color: var(--color-border); top: 0; bottom: 0; left: 50%; margin-left: -1.5px; }
+.timeline-item { padding: 1rem 3rem; position: relative; width: 50%; }
+.timeline-item:nth-child(odd) { left: 0; }
+.timeline-item:nth-child(even) { left: 50%; }
+.timeline-dot { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background-color: var(--color-light-blue); top: 32px; border-radius: 50%; z-index: 1; border: 3px solid var(--color-bg); }
+.timeline-item:nth-child(even) .timeline-dot { left: -8px; }
+.timeline-date { font-weight: 700; color: var(--color-light-blue); }
+.timeline-content { background: var(--color-bg-secondary); padding: 1.5rem; border-radius: var(--border-radius); border: 1px solid var(--color-border); }
+
+.team-section { background-color: var(--color-bg-secondary); }
+.team-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.team-card { text-align: center; }
+.team-card-img-wrapper { border-radius: 50%; overflow: hidden; width: 180px; height: 180px; margin: 0 auto 1.5rem auto; border: 3px solid var(--color-border); transition: border-color var(--transition-medium); }
+.team-card:hover .team-card-img-wrapper { border-color: var(--color-light-blue); }
+.team-card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+.team-card-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.25rem; }
+.team-card-role { color: var(--color-text-muted); }
+
+.final-cta-section { background: linear-gradient(45deg, var(--color-primary-tech-blue), var(--color-light-blue)); color: var(--color-white); }
+.final-cta-title { color: var(--color-white); font-size: clamp(1.8rem, 4vw, 2.2rem); }
+.final-cta-subtitle { margin: 1rem auto 2rem auto; max-width: 600px; opacity: 0.9; }
+.btn { display: inline-block; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; text-decoration: none; border: 2px solid transparent; transition: all var(--transition-medium); cursor: pointer; }
+.btn-primary { background: var(--color-white); color: var(--color-primary-tech-blue); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+.btn-large { padding: 1rem 2.5rem; font-size: 1.1rem; }
+
+.on-scroll-reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s var(--transition-medium), transform 0.6s var(--transition-medium); }
+.on-scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* Responsividade */
+@media screen and (max-width: 900px) {
+    .timeline-container::after { left: 15px; }
+    .timeline-item { width: 100%; padding-left: 50px; padding-right: 15px; }
+    .timeline-item:nth-child(even) { left: 0; }
+    .timeline-dot { left: 7px; }
+    .timeline-item:nth-child(even) .timeline-dot { left: 7px; }
+}
+@media (max-width: 768px) {
+    .nav-menu-desktop { display: none; }
+    .mission-grid { grid-template-columns: 1fr; }
+    .mission-visual { margin-top: 2rem; }
+}
+/* ==========================================================================
+   CSS ADICIONAL PARA OS BOTÕES DE LOGIN/CADASTRO
+   ========================================================================== */
+
+/* --- Container para os botões de ação no desktop --- */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espaçamento entre os botões */
+}
+
+/* --- Estilo Base dos Botões (reutilizável) --- */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.5rem; /* Tamanho do botão */
+    border-radius: 50px; /* Formato de pílula */
+    font-weight: 600;
+    font-size: 0.9rem; /* Tamanho da fonte */
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+/* --- Estilo do Botão Primário (Criar Conta) --- */
+.btn-primary {
+    background: linear-gradient(90deg, var(--color-primary-tech-blue) 0%, var(--color-light-blue) 100%);
+    color: var(--color-white);
+    background-size: 200% auto;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+    background-position: right center;
+    box-shadow: 0 4px 20px rgba(45, 156, 219, 0.3);
+    transform: translateY(-3px);
+}
+
+/* --- Estilo do Botão Secundário (Login) --- */
+.btn-secondary-outline {
+    background-color: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+[data-theme="light"] .btn-secondary-outline {
+    border-color: var(--color-primary-tech-blue);
+    color: var(--color-primary-tech-blue);
+}
+.btn-secondary-outline:hover, .btn-secondary-outline:focus-visible {
+    background-color: var(--color-light-blue);
+    border-color: var(--color-light-blue);
+    color: var(--color-white);
+    transform: translateY(-3px);
+}
+
+/* --- Divisor no Menu Mobile (Drawer) --- */
+.nav-drawer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 1rem 0;
+}
+
+/* --- Responsividade --- */
+/* Esconde os botões de ação do desktop em telas pequenas */
+@media (max-width: 1023px) {
+    .nav-actions {
+        display: none;
+    }
+}
+/* Estilo para a seção hero */
+.page-hero#home-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Ocupa a altura total da tela */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+/* Contêiner para o vídeo e os slides */
+.hero-media-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Fica atrás do conteúdo de texto */
+}
+
+/* Estilo comum para vídeo e slider */
+.hero-video, .hero-slider {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que cubra todo o espaço sem distorcer */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.8s ease-in-out; /* Transição suave */
+}
+
+/* Oculta elementos com a classe .hidden */
+.hidden {
+    display: none;
+    opacity: 0;
+    pointer-events: none; /* Impede interações quando oculto */
+}
+
+/* Estilos para o carrossel de slides */
+.hero-slider .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    visibility: hidden;
+}
+
+.hero-slider .slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Garante que o conteúdo de texto fique na frente */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}

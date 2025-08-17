@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componente de Navegação - Renovatech</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Estilos Mínimos para o Componente (isolado) -->
+    <style>
+        /* CSS Custom Properties (Variáveis) */
+        :root {
+            --color-primary: #0352bb;
+            --color-secondary: #2d9cdb;
+            --color-light-gray: #f5f5f5;
+            --color-white: #ffffff;
+            --color-soft-black: #1a1a1a;
+            
+            --color-bg: #0f172a;
+            --color-text: #f5f5f5;
+            --color-header-bg: rgba(15, 23, 42, 0.85);
+
+            --transition-speed: 0.3s;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        /* Reset Básico */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Bloqueia o scroll quando o menu estiver aberto */
+        body.drawer-open {
+            overflow: hidden;
+        }
+
+        /* Cabeçalho Principal */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--color-header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-white);
+            text-decoration: none;
+        }
+
+        .nav-brand span {
+            color: var(--color-secondary);
+        }
+
+        /* Botão Hambúrguer */
+        .nav-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 24px;
+            position: relative;
+            z-index: 1002; /* Acima do overlay e drawer */
+        }
+        
+        .nav-toggle-line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-white);
+            position: absolute;
+            left: 0;
+            transition: transform var(--transition-speed) ease, opacity var(--transition-speed) ease;
+        }
+        
+        .nav-toggle-line:nth-child(1) { top: 0; }
+        .nav-toggle-line:nth-child(2) { top: 50%; transform: translateY(-50%); }
+        .nav-toggle-line:nth-child(3) { bottom: 0; }
+
+        /* Animação do Hambúrguer para 'X' */
+        .nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+        .nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle[aria-expanded="true"] .nav-toggle-line:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        /* Menu Lateral (Drawer) */
+        .nav-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80%;
+            max-width: 300px;
+            height: 100%;
+            background-color: var(--color-primary);
+            z-index: 1001;
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed) cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 8rem 2rem 2rem;
+        }
+        
+        .nav-drawer[aria-hidden="false"] {
+            transform: translateX(0);
+        }
+        
+        .nav-drawer ul { list-style: none; }
+        
+        .nav-drawer a {
+            display: block;
+            color: var(--color-white);
+            font-size: 1.25rem;
+            font-weight: 500;
+            padding: 1rem 0;
+            text-decoration: none;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-drawer a:hover,
+        .nav-drawer a:focus-visible {
+            color: var(--color-secondary);
+            outline: none;
+        }
+
+        /* Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity var(--transition-speed), visibility var(--transition-speed);
+        }
+
+        .nav-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Menu Desktop (escondido em mobile) */
+        .nav-menu-desktop {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .nav-toggle { display: none; }
+            .nav-drawer { display: none; }
+            .nav-overlay { display: none; }
+            
+            .nav-menu-desktop {
+                display: flex;
+                gap: 2rem;
+            }
+            .nav-menu-desktop a {
+                color: var(--color-text);
+                text-decoration: none;
+                font-weight: 500;
+                position: relative;
+                padding: 0.25rem 0;
+            }
+            .nav-menu-desktop a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background-color: var(--color-secondary);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform var(--transition-speed);
+            }
+            .nav-menu-desktop a:hover::after,
+            .nav-menu-desktop a.active::after {
+                transform: scaleX(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <!-- =========================================================================
+ CABEÇALHO E NAVEGAÇÃO
+ ========================================================================== -->
+<header class="main-header" id="main-header">
+    <div class="container">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Renova<span>tech</span></a>
+
+            <!-- Menu de Navegação (Desktop) -->
+            <nav class="nav-menu-desktop">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="servicos.html" class="nav-link">Serviços</a>
+                <a href="sobre.html" class="nav-link">Sobre Nós</a>
+                <a href="contato.html" class="nav-link">Contato</a>
+            </nav>
+
+            <!-- NOVO: Botões de Ação (Login/Cadastro) para Desktop -->
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-secondary-outline">Login</a>
+                <a href="login.html" class="btn btn-primary">Criar Conta</a>
+            </div>
+            <!-- FIM DO NOVO BLOCO -->
+
+            <!-- Botão Hambúrguer (Mobile) -->
+            <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-drawer">
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+                <span class="nav-toggle-line"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Menu Lateral (Drawer para Mobile) -->
+<aside class="nav-drawer" id="nav-drawer" aria-hidden="true" tabindex="-1">
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-drawer-link">Home</a></li>
+            <li><a href="servicos.html" class="nav-drawer-link">Serviços</a></li>
+            <li><a href="sobre.html" class="nav-drawer-link">Sobre Nós</a></li>
+            <li><a href="contato.html" class="nav-drawer-link">Contato</a></li>
+            
+            <!-- NOVO: Links de Ação para Mobile -->
+            <li class="nav-drawer-divider"></li>
+            <li><a href="login.html" class="nav-drawer-link">Login</a></li>
+            <li><a href="login.html" class="nav-drawer-link">Criar Conta</a></li>
+            <!-- FIM DOS NOVOS LINKS -->
+        </ul>
+    </nav>
+</aside>
+
+    <!-- Overlay para o fundo -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+    
+    <script>
+        // Script mínimo para o componente funcionar de forma isolada
+        document.addEventListener('DOMContentLoaded', () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const navDrawer = document.getElementById('nav-drawer');
+            const navOverlay = document.getElementById('nav-overlay');
+            const focusableElements = navDrawer.querySelectorAll('a');
+
+            const openDrawer = () => {
+                navToggle.setAttribute('aria-expanded', 'true');
+                navDrawer.setAttribute('aria-hidden', 'false');
+                navOverlay.classList.add('visible');
+                document.body.classList.add('drawer-open');
+                navDrawer.focus(); // Foco no drawer para o trap funcionar
+            };
+
+            const closeDrawer = () => {
+                navToggle.setAttribute('aria-expanded', 'false');
+                navDrawer.setAttribute('aria-hidden', 'true');
+                navOverlay.classList.remove('visible');
+                document.body.classList.remove('drawer-open');
+                navToggle.focus();
+            };
+
+            navToggle.addEventListener('click', () => {
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                isExpanded ? closeDrawer() : openDrawer();
+            });
+
+            navOverlay.addEventListener('click', closeDrawer);
+            focusableElements.forEach(link => link.addEventListener('click', closeDrawer));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+                    closeDrawer();
+                }
+            });
+            
+            // Trap de Foco
+            navDrawer.addEventListener('keydown', (e) => {
+                if (e.key !== 'Tab') return;
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                if (e.shiftKey) {
+                    if (document.activeElement === firstElement) {
+                        lastElement.focus();
+                        e.preventDefault();
+                    }
+                } else {
+                    if (document.activeElement === lastElement) {
+                        firstElement.focus();
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!-- FILE: components/logout-modal.html -->
+<div class="logout-modal-overlay" id="logout-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="logout-modal-title" style="visibility: hidden;">
+    <div class="logout-modal-content">
+        
+        <header class="logout-modal-header">
+            <h2 id="logout-modal-title">Terminar Sessão</h2>
+            <p>Tem a certeza que deseja sair do seu portal?</p>
+        </header>
+
+        <div class="logout-modal-body">
+            <div class="time-display">
+                <div id="logout-modal-time" class="time">14:30:55</div>
+                <div id="logout-modal-date" class="date">terça-feira, 16 de agosto de 2025</div>
+            </div>
+            <nav class="quick-nav">
+                <a href="index.html" class="quick-nav-link"><i class="bi bi-house-door-fill"></i><span>Página Inicial</span></a>
+                <a href="services.html" class="quick-nav-link"><i class="bi bi-briefcase-fill"></i><span>Nossos Serviços</span></a>
+                <a href="dashboard.html" class="quick-nav-link" id="dashboard-link"><i class="bi bi-grid-1x2-fill"></i><span>Meu Dashboard</span></a>
+            </nav>
+        </div>
+        
+        <footer class="logout-modal-footer">
+            <p class="goodbye-message">Volte sempre!</p>
+            <div class="action-buttons">
+                <button class="btn btn-secondary-outline" id="logout-cancel-btn">Cancelar</button>
+                <button class="btn btn-primary-glow" id="logout-confirm-btn">Confirmar Saída</button>
+            </div>
+        </footer>
+
+    </div>
+</div>

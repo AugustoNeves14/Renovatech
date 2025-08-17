@@ -1,0 +1,324 @@
+/* ==========================================================================
+   PERFIL DE UTILIZADOR - DESIGN SOFISTICADO E FUTURISTA
+   ========================================================================== */
+
+/* --- 1. VARIÁVEIS DE COR E TEMA --- */
+:root {
+    /* Paleta de Cores Fornecida */
+    --color-primary-tech-blue: #0352bb;
+    --color-light-blue: #2d9cdb;
+    --color-light-gray: #f5f5f5;
+    --color-white: #ffffff;
+    --color-soft-black: #1a1a1a;
+    
+    /* Variáveis de Tema (Modo Claro - Padrão) */
+    --bg-main: #f0f2f5; /* Um cinza muito claro para o fundo */
+    --bg-glass: rgba(255, 255, 255, 0.65);
+    --text-primary: var(--color-soft-black);
+    --text-secondary: #5a6472;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --glow-color: rgba(3, 82, 187, 0.3); /* Brilho sutil do azul primário */
+    --shadow-color: rgba(0, 0, 0, 0.05);
+
+    --font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] {
+    --bg-main: #0a0f1a; /* Um azul-escuro profundo */
+    --bg-glass: rgba(20, 28, 46, 0.6);
+    --text-primary: var(--color-white);
+    --text-secondary: #a0aec0;
+    --border-color: rgba(255, 255, 255, 0.15);
+    --glow-color: rgba(45, 156, 219, 0.4);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
+/* --- 2. ESTILOS GLOBAIS E RESET --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    background-image: 
+        radial-gradient(circle at 1% 1%, rgba(3, 82, 187, 0.1) 0%, transparent 30%),
+        radial-gradient(circle at 99% 99%, rgba(45, 156, 219, 0.1) 0%, transparent 40%);
+    background-attachment: fixed;
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+h2, h3 {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+/* --- 3. BOTÃO DE VOLTAR À HOME --- */
+.back-home-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.back-home-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--shadow-color), 0 0 15px var(--glow-color);
+    border-color: var(--color-light-blue);
+}
+
+.back-home-btn i {
+    font-size: 1.5rem;
+}
+
+/* --- 4. LAYOUT PRINCIPAL E GRID DOS CARDS --- */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 2rem 4rem; /* Espaço no topo para o botão home */
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "user showcase"
+        "form-edit form-password";
+    gap: 2rem;
+}
+
+/* --- 5. ESTILO DOS CARDS (EFEITO GLASSMORPHISM) --- */
+.profile-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 40px var(--shadow-color), 0 0 20px var(--glow-color);
+}
+
+/* Atribuição das áreas do grid */
+.user-info-card { grid-area: user; }
+.showcase-card { grid-area: showcase; }
+.form-card:nth-of-type(3) { grid-area: form-edit; }
+.form-card:nth-of-type(4) { grid-area: form-password; }
+
+
+/* --- 6. ESTILOS ESPECÍFICOS DOS CARDS --- */
+
+/* Card de Informações do Utilizador */
+.profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    flex-shrink: 0;
+}
+
+#profile-picture-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--color-primary-tech-blue);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+
+.edit-avatar-button {
+    position: absolute;
+    bottom: 5px; right: 5px;
+    width: 38px; height: 38px;
+    background: var(--color-light-blue);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border: 2px solid var(--bg-main);
+    transition: all 0.3s ease;
+}
+.edit-avatar-button:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(45, 156, 219, 0.7);
+}
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    margin: -1px; padding: 0; overflow: hidden;
+    clip: rect(0, 0, 0, 0); border: 0;
+}
+
+.user-details h2 { font-size: 1.75rem; font-weight: 700; margin: 0; }
+.user-details p { font-size: 1rem; color: var(--text-secondary); word-break: break-all; }
+
+
+/* Card de Showcase */
+.showcase-card h3, .form-card h3 { margin-bottom: 0.5rem; }
+.showcase-card p, .form-card .form-hint { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem; }
+#showcase-carousel .carousel-item img { border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; }
+#showcase-carousel .carousel-caption { background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); text-align: left; left: 0; right: 0; bottom: 0; padding: 1.5rem 1rem; border-radius: 0 0 12px 12px; }
+
+/* Cards de Formulário */
+.profile-form .form-group { margin-bottom: 1.25rem; }
+.profile-form label { display: block; font-weight: 500; margin-bottom: 0.5rem; font-size: 0.9rem; }
+.form-control {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: rgba(0,0,0, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--color-light-blue);
+    box-shadow: 0 0 0 3px var(--glow-color);
+}
+.form-actions { margin-top: 1.5rem; text-align: right; }
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-primary {
+    background: var(--color-primary-tech-blue);
+    color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(3, 82, 187, 0.3);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(3, 82, 187, 0.5);
+}
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+.btn-secondary:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+}
+
+
+/* --- 7. BOTÃO FLUTUANTE DE TEMA --- */
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 1.3rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+.theme-toggle-btn i {
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    position: absolute;
+}
+.theme-icon-sun { color: #f39c12; }
+.theme-icon-moon { color: #f1c40f; }
+
+/* Lógica de troca de ícone */
+[data-theme="dark"] .theme-icon-sun { transform: translateY(150%); opacity: 0; }
+[data-theme="dark"] .theme-icon-moon { transform: translateY(0); opacity: 1; }
+[data-theme="light"] .theme-icon-sun { transform: translateY(0); opacity: 1; }
+[data-theme="light"] .theme-icon-moon { transform: translateY(-150%); opacity: 0; }
+
+
+/* --- 8. RESPONSIVIDADE --- */
+
+/* Tablets e dispositivos menores (Layout de 1 coluna) */
+@media (max-width: 991.98px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "user"
+            "showcase"
+            "form-edit"
+            "form-password";
+    }
+}
+
+/* Mobile (Layout matriz 2x2 para os primeiros cards) */
+@media (max-width: 767.98px) {
+    .profile-container { padding: 100px 1rem 2rem; }
+    .back-home-btn span { display: none; } /* Oculta texto no botão home */
+    .back-home-btn { padding: 10px; }
+
+    .profile-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "user user"
+            "form-edit form-password"
+            "showcase showcase";
+        gap: 1rem;
+    }
+
+    /* Em telas muito pequenas, volta a ser 1 coluna */
+    @media (max-width: 576px) {
+        .profile-grid {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "user"
+                "form-edit"
+                "form-password"
+                "showcase";
+        }
+        .form-actions { text-align: center; }
+        .form-actions .btn { width: 100%; }
+    }
+}
